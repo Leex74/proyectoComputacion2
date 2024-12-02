@@ -292,30 +292,69 @@ public class menu extends JFrame
         ayuda.add(ayudaeliminar);
         
         JMenu info = new JMenu("Información");
-        info.addMenuListener(new javax.swing.event.MenuListener() 
-        {
-            @Override
-            public void menuSelected(javax.swing.event.MenuEvent e) 
-            {
-               JFrame inf = new JFrame();
-               inf.setSize(400,300);
-               inf.setVisible(true);
-               
-            }
+        MenuBar.add(info);
 
+        JMenuItem somos = new JMenuItem("¿Quienes Somos?");
+        info.add(somos);
+        somos.addActionListener(new ActionListener() {
             @Override
-            public void menuDeselected(javax.swing.event.MenuEvent e) 
-            {
-                // No hacer nada al deseleccionar
-            }
+            public void actionPerformed(ActionEvent e) {
+                JFrame som = new JFrame();
+                som.setSize(450,350);
+                som.setVisible(true);
+                som.setResizable(false); //No permite cambiar el tamaño de la ventana ya que es false.
+                som.setLocationRelativeTo(null); //Hace que la ventana se coloque en el medio.
 
-            @Override
-            public void menuCanceled(javax.swing.event.MenuEvent e) 
-            {
-                // No hacer nada si el menú se cancela
+
+                JPanel panesom = new JPanel();
+                panesom.setBounds(0, 0, 450, 300);
+                panesom.setBackground(new Color(173,216,230));
+                panesom.setLayout(null);
+                som.add(panesom);
+
+                JLayeredPane layeredPanesom = new JLayeredPane();
+                layeredPanesom.setSize(450, 300);
+
+                JLabel labelsom = new JLabel(new ImageIcon("C:/Users/abarc/Documents/GitHub/proyectoComputacion2/src/main/java/com/mycompany/proyecto/grey2.png"));
+                labelsom.setSize(450, 100);
+                layeredPanesom.add(labelsom, JLayeredPane.DEFAULT_LAYER);
+
+                JTextArea  textosom = new JTextArea ("Quienes somos:\n" +
+                                                     "\n" +
+                                                     "   Somos un grupo de estudiantes de la Universidad \n" +
+                                                     "Americana, conformado por Brenda Lee Avendaño Matarrita,\n" +
+                                                     "Allan Raschit Díaz Salazar y Sasha Tamaya Arias Aguero. \n" +
+                                                     "Actualmente estamos cursando la clase deProgramación 2, \n" +
+                                                     "donde desarrollamos proyectos innovadores para mejorar\n" +
+                                                     "nuestras habilidades y conocimientos en el desarrollo de software.\n"
+                                                     );
+
+                JButton sali = new JButton("Atrás"); //Se crea el botón de "atrás".
+                sali.setBounds(320,275,80,25);//Estas son las dimensiones de "agregar".
+                sali.setForeground(new Color(15,70,111)); //Cambia el color de la fuente.
+                sali.setFont(new Font("",Font.BOLD,14));
+                sali.setBackground(new Color(204,236,255));
+                layeredPanesom.add(sali, JLayeredPane.PALETTE_LAYER);
+                sali.addActionListener(new ActionListener()//Agrega una acción al botón, en este caso un escuchador de acción que es el click del botón.
+                {
+                    @Override
+                    public void actionPerformed(ActionEvent e)
+                    {
+                        som.dispose();
+                        setVisible(true);
+                    }
+                });
+
+                textosom.setLineWrap(true); // Habilita el ajuste de línea
+                textosom.setWrapStyleWord(true); // Ajusta por palabras completas
+                textosom.setEditable(false); // Evita que el usuario edite el texto
+
+                textosom.setBackground(new Color(173,216,230));
+                textosom.setBounds(50, 100, 450, 350);
+                layeredPanesom.add(textosom,JLayeredPane.PALETTE_LAYER);
+                panesom.add(layeredPanesom);
             }
         });
-        MenuBar.add(info);
         
         JMenu cerrar = new JMenu("Cerrar sesión");
         cerrar.addMenuListener(new javax.swing.event.MenuListener() 

@@ -164,7 +164,7 @@ public class login extends JFrame
                         {
                             main.usuarios[n]=usuario2.getText();
                             main.contraseñas[n]=contraseña2.getText();
-
+                            break;
                         }
                     }
                     usuario2.setText("");
